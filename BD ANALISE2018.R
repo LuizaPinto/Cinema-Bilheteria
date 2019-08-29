@@ -233,3 +233,45 @@ USANov<- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Weekly == "November" 
 USANov
 USADec<- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Weekly == "December" & BD_Bilheteria2_20_202018$Country == "USA",]
 USADec
+
+##
+
+Brazil <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="Brazil",]
+Brazil
+Argentina <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="Argentina",]
+Argentina
+Germany <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="Germany",]
+Germany
+USA <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="USA",]
+USA
+China <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="China",]
+China
+SouthAfrica <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="South Africa",]
+SouthAfrica
+Australia <- BD_Bilheteria2_20_202018[BD_Bilheteria2_20_202018$Country =="Australia",]
+Australia
+
+###bar plot
+
+require(tidyverse)
+base1 = BD_Bilheteria2_20_202018 %>% 
+  group_by(Country,Weekly) %>% 
+  summarise(TotalGross = sum(`Total Gross`/1000000))
+BaseBrazil = base1 %>% 
+  filter(Country == "Brazil")
+
+
+BaseBrazil$Weekly = ordered(BaseBrazil$Weekly, levels = c("January","February","March","April","May",
+                                                                                                                                      "June","July",
+                                                                                                                                       "August","September",
+                                                                                                                                       "October","November",
+                                                                                                                                       "December"))
+
+BaseBrazil = BaseBrazil %>% arrange(id) %>% select(id,everything())                                                    
+BaseBrazil$Weekly = as.factor(BaseBrazil$Weekly)
+
+
+ggplot(BaseBrazil, aes(x = Weekly, y = TotalGross)) +
+  geom_bar(stat='identity', col = "black",fill = "steelblue" ,width=0.9, position = "dodge") +
+  labs(x='Meses', y='Bilheteria', title="Bilheteria mensal dos filmes no Brasil em 2018 em Milhões de Dólares") + coord_cartesian(ylim=c(20,60)) +
+  theme_bw()
