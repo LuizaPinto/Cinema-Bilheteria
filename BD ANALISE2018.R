@@ -275,3 +275,32 @@ ggplot(BaseBrazil, aes(x = Weekly, y = TotalGross)) +
   geom_bar(stat='identity', col = "black",fill = "steelblue" ,width=0.9, position = "dodge") +
   labs(x='Meses', y='Bilheteria', title="Bilheteria mensal dos filmes no Brasil em 2018 em Milhões de Dólares") + coord_cartesian(ylim=c(20,60)) +
   theme_bw()
+
+##Graphsrequire(tidyverse)
+base1 = BD_Bilheteria2_20_202018 %>% 
+  group_by(Country,Weekly) %>% 
+  summarise(TotalGross = sum(`Total Gross`/1000000))
+BaseBrazil = base1 %>% 
+  filter(Country == "Brazil")
+
+
+BaseBrazil$Weekly = ordered(BaseBrazil$Weekly, levels = c("January","February","March","April","May",
+                                                                                                                                      "June","July",
+                                                                                                                                       "August","September",
+                                                                                                                                       "October","November",
+                                                                                                                                       "December"))
+
+BaseBrazil = BaseBrazil %>% arrange(id) %>% select(id,everything())                                                    
+BaseBrazil$Weekly = as.factor(BaseBrazil$Weekly)
+
+
+ggplot(BaseBrazil, aes(x = Weekly, y = TotalGross)) +
+  geom_bar(stat='identity', col = "black",fill = "steelblue" ,width=0.9, position = "dodge") +
+  labs(x='Meses', y='Bilheteria', title="Bilheteria mensal dos filmes no Brasil em 2018 em Milhões de Dólares") + coord_cartesian(ylim=c(20,60)) +
+  theme_bw()
+
+
+
+
+
+
