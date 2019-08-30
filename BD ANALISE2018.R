@@ -302,5 +302,11 @@ ggplot(BaseBrazil, aes(x = Weekly, y = TotalGross)) +
 
 
 
+######Grafico como fazer
+ggplot(BaseBrazil,aes(x = Weekly, y = TotalGross))+
+  geom_bar(stat = "identity")+
+  labs(x = "Meses", y = "Bilheteria", title = "Bilheteria Mensal dos filmes na  Argentina em 2018 em Milhões de Dólares")
+
+
 
 
