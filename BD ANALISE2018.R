@@ -462,6 +462,14 @@ ggplot(BaseBrazil,aes(x = Weekly, y = TotalGross))+
   geom_bar(stat = "identity", col = "black", fill = "steelblue")+
   labs(x = "Meses", y = "Bilheteria", title = "Bilheteria Mensal dos filmes na Australia em 2018 em Milhões de Dólares")
 ####Setor genero
+x <-  table(BD_Bilheteria2_20_202018_20_1_$Genre)
+class(x)
+barplot(x,
+        horiz = TRUE,
+        xlab = "Genre",
+        ylab = "Frequência absoluta",
+        col = c("turquoise", "pink"))
+box(bty = "L")
 
 
 ###
