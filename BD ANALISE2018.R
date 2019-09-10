@@ -466,4 +466,4 @@ ggplot(BaseBrazil,aes(x = Weekly, y = TotalGross))+
 
 ###
 
-
+http://www.leg.ufpr.br/~walmes/cursoR/data-vis/01-vis-graphics.html
