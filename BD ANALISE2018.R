@@ -464,6 +464,6 @@ ggplot(BaseBrazil,aes(x = Weekly, y = TotalGross))+
 ####Setor genero
 
 
-
+###
 
 
