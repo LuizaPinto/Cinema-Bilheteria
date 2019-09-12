@@ -475,3 +475,66 @@ box(bty = "L")
 ###
 
 http://www.leg.ufpr.br/~walmes/cursoR/data-vis/01-vis-graphics.html
+
+###Genero
+ggplot(BaseBrazil,aes(horiz=TRUE, x = Genre , Y =Frequencia absoluta )
+        horiz = TRUE,
+        xlab = "Tipo de câmbio",
+        ylab = "Frequência absoluta",
+        col = c("seagreen", "#FF9911")
+        width= 0.9)
+box(bty = "L")
+
+
+
+
+
+###
+
+
+x <-  table(BD_Bilheteria2_20_202018$Genre)
+x <- sort(x)
+class(x)
+par(mar=c(5,6.5,4,2))
+barplot(x,
+        horiz = TRUE,
+        xlab = "Genre",
+        col = c("turquoise", "pink"),
+        las =1,
+        )
+
+
+box(bty = "L", las = 0.5)
+
+##teste
+y <- table(BD_Bilheteria2_20_202018$Genre)
+class(y)
+pie(y)
+y
+
+###porcentagem
+100*y/sum(y)
+
+##Selcionar país
+
+require(tidyverse)
+country1 <- function(data,p = "Brazil"){
+Base1= data %>%
+dplyr:: filter(Country == p)
+  return(Base1)
+}
+
+country1(BD_Bilheteria2_20_202018, p = "Brazil")
+
+##Selecionar genero 
+
+genero_filme <- function(data, p="Brazil"){
+  Base1 = data %>%
+    dplyr :: select(Genre)
+  return(Base1)
+  
+}
+genero_filme(BD_Bilheteria2_20_202018)
+
+
+
