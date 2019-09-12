@@ -538,3 +538,25 @@ genero_filme(BD_Bilheteria2_20_202018)
 
 
 
+#######Julia
+base1 = BD_Bilheteria2_20_202018 %>% 
+  group_by(Country,Weekly) %>% 
+  summarise(TotalGross = sum(`Total Gross`/1000000))
+BaseBrazil = base1 %>% 
+  filter(Country == "USA")
+BaseBrazil
+
+BaseBrazil$Weekly = ordered(BaseBrazil$Weekly, levels = c("January","February","March","April","May",
+                                                          "June","July",
+                                                          "August","September",
+                                                          "October","November",
+                                                          "December"))
+
+
+
+
+
+
+ggplot(BaseBrazil,aes(x = Weekly, y = TotalGross))+
+  geom_bar(stat = "identity", col = "black", fill = "steelblue")+
+  labs(x = "Meses", y = "Bilheteria", title = "Bilheteria Mensal dos filmes nos USA em 2018 em Milhões de Dólares")
