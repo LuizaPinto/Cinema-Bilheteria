@@ -118,7 +118,7 @@ base1 = BD_Bilheteria2_20_202018 %>%
   group_by(Country,Weekly) %>% 
   summarise(TotalGross = sum(`Total Gross`/1000000))
 BaseBrazil = base1 %>% 
-  filter(Country == "China")
+  filter(Country == "South Africa")
 BaseBrazil
 
 BaseBrazil$Weekly = ordered(BaseBrazil$Weekly, levels = c("January","February","March","April","May",
