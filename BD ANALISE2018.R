@@ -560,3 +560,11 @@ BaseBrazil$Weekly = ordered(BaseBrazil$Weekly, levels = c("January","February","
 ggplot(BaseBrazil,aes(x = Weekly, y = TotalGross))+
   geom_bar(stat = "identity", col = "black", fill = "steelblue")+
   labs(x = "Meses", y = "Bilheteria", title = "Bilheteria Mensal dos filmes nos USA em 2018 em Milhões de Dólares")
+
+
+#####
+
+barplot(sort(table(BD_Bilheteria2_20_202018$`#1 Movie`)))
+tabela = as_tibble(as.data.frame(sort(table(BD_Bilheteria2_20_202018$`#1 Movie`))))
+tabela = tabela %>% arrange(desc(Freq))
+View(tabela)
