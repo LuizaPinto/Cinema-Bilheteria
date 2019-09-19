@@ -33,6 +33,25 @@ pie(freq1, main="Genêros no Brasil 2018", labels=rotulos, cex=0.7, col=rainbow(
 
 
 
+##### Final
+#######################################################################################################################################
+genero_filme <- function(data, p="Brazil"){
+  Base1 = data %>% 
+    filter(Country == p)%>%
+    dplyr::select(Genre)
+  return(Base1)
+}
+
+aux = genero_filme(BD_Bilheteria2_20_202018, p = "Brazil")
+
+
+freq2 <- c(sum(aux[1 : 4]), aux[5:11])
+names(freq2) <-  c("Outros", names(freq2[5:11]))
+
+porc<-round(freq2*100/sum(freq2), 2)
+rotulos<-paste(names(freq2),"(",porc,"%)", sep="")
+pie(freq2, main="Genêros no Brasil 2018", labels=rotulos, cex=0.7, col=rainbow(8))
+
 
 
 
